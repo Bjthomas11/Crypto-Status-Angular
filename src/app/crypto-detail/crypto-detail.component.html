@@ -1,0 +1,50 @@
+<div class="container-fluid text-white">
+  <div class="row">
+    <div class="col-md-3 details">
+      <div class="img">
+        <img [src]="coin?.image?.large" alt="" />
+        <h3 class="text-center" style="font-size: 23px">
+          {{ coin?.name }}
+        </h3>
+        <h2 [innerHtml]="coin?.description?.en.split('. ')[0]"></h2>
+        <div class="more-detail">
+          <span class="title">Rank: </span>
+          <span class="value">{{ coin?.market_cap_rank }}</span
+          ><br />
+          <span class="title">Current Price: </span>
+          <span class="value">{{
+            coin?.market_data.current_price.usd | currency: currency
+          }}</span
+          ><br />
+          <span class="title">Market Cap: </span>
+          <span class="value">{{
+            coin?.market_data.market_cap.usd | currency: currency
+          }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <canvas
+        style="width: 300px"
+        baseChart
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+        [type]="lineChartType"
+      ></canvas>
+      <div class="d-flex justify-content-around">
+        <button (click)="getVisualData(1)" class="btn btn-custom text-white">
+          24 hours
+        </button>
+        <button (click)="getVisualData(30)" class="btn btn-custom text-white">
+          30 days
+        </button>
+        <button (click)="getVisualData(90)" class="btn btn-custom text-white">
+          90 days
+        </button>
+        <button (click)="getVisualData(365)" class="btn btn-custom text-white">
+          1 year
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
